@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    Problem
+{% endblock title %}
+
+{% load static %}
+{% block css_file %}
+    <link rel="stylesheet" href="{% static 'main/postproblem.css' %}">
+{% endblock css_file %}
+
+{% block content %}
+{% include 'main/main.html' %}
+    <body>
+        <p class="h1 text-center">Write Your Question below</p>
+        <div class="postbox">
+                <form action="" method="POST" class="postform">
+                    {% csrf_token %}
+                    <table class="posttable">
+                        <tr>
+                            <td>
+                                <input type="text" placeholder="title of Problem" name="title">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <textarea cols="50" rows="5" name="description" placeholder="description about problem"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn btn-primary" type="Submit">Post</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+        </div>
+    </body>
+{% endblock content %}

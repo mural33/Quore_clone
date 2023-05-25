@@ -1,0 +1,43 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+#box{
+    background-color:lightblue;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width:50%;
+    height: 70vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#box > .col1 > form > table{
+    /* background-color: blue; */
+    height: 50vh;
+    width: 100%;
+}
+#box > .col1 > form > table tr td input{
+    width: 100%;
+
+}
+#box > .col2 > form > table{
+    /* background-color: blue; */
+    height: 30vh;
+    width: 100%;
+}
+#box > .col2 > form > table tr td input{
+    width: 100%;
+
+}
+input{
+    background: none;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid black;
+    font-size: 20px;
+    font-weight:500;
+}

@@ -1,0 +1,93 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block css_file %}
+  <link rel="stylesheet" href="{% static 'main/login.css' %}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock css_file %}
+{% block content %}
+{% include "main/nav.html" %}
+    <div class="container" id="box">
+        <div class="col1 col col-6" >
+            <p class="h2 text-center">sign in</p>
+            <form action="" method="POST" id="sign_in_form">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td>
+                            <input type="text" placeholder="Enter username"  name="name" id="name" required>
+                            <p id="msg" class="text-danger h5"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="email" placeholder="Enter Email" name="mail" id="email" required>
+                            <p id="e_msg" class="text-danger h5"></p>
+                        </td>
+                        <td>
+                            <p></p>
+                        </td>
+                    <tr>
+                        <td>
+                            <input type="text" placeholder="Enter password" name="password" required >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="btn btn-primary" type="submit">Sign in</button>
+                            <a href="{% url 'log_in' %}" role="button" class="btn btn-danger">Log In</a>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    {% endblock  %}
+
+{% block js_file %}
+    <script>
+        $(document).ready(function(){
+            $("#email").change(function(){
+                var email = $(this).val();
+                var csrfToken = $("input[name='csrfmiddlewaretoken']").val();
+                $.ajax({
+                    url: "{% url 'email_check' %}",
+                    method: "POST",
+                    data: {
+                        mail: email,
+                        csrfmiddlewaretoken: csrfToken
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if(response == 1){
+                                $("#e_msg").html("email is used")
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        // Handle the error
+                    }
+                });
+            });
+
+            $("#name").change(function(){
+                var username = $(this).val();
+                var csrfToken = $("input[name='csrfmiddlewaretoken']").val();
+                $.ajax({
+                    url: "{% url 'email_check' %}",
+                    method: "POST",
+                    data: {
+                        username: username,
+                        csrfmiddlewaretoken: csrfToken
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if(response == 1){
+                                $("#msg").html("Username is used")
+                        }
+                    },
+                    error: function(xhr, textStatus, errorThrown) {
+                        // Handle the error
+                    }
+                });
+            });
+        });
+    </script>
+    {% endblock js_file %}

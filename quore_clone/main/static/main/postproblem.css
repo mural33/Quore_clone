@@ -1,0 +1,39 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+.postbox{
+    background-color: lightcyan;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.postform{
+display: flex;
+justify-content: center;
+width: 100%;
+/* background-color:blue; */
+}
+.postform > .posttable{
+    /* background-color: aqua; */
+    width: 50%;
+}
+
+input {
+    width: 100%;
+    outline: none;
+    border: none;
+    height: 50px;
+    background: none;
+    border-bottom: 2px solid black;
+    font-weight: bold;
+    font-size: 30px;
+}
+ textarea{
+    text-align: center;
+    width: 100%;
+    background: none;
+    font-size: 30px;
+}

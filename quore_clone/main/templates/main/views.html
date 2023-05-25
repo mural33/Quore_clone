@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+
+{% load static %}
+{% block css_file %}
+    <link rel="stylesheet" href="{% static 'main/postproblem.css' %}">
+{% endblock css_file %}
+
+{% block content %}
+{% include 'main/main.html' %}
+<body>
+    <ul> 
+        <li>
+            <p class="text-center h2">{{question.title}}</p>
+            <p class="h3">{{question.description}}</p>
+        </li>
+    </ul>
+    <ul>
+        
+        {% for i in ans %}
+            <li>
+                <div class="card bg-dark text-white">
+                    <div class="card-body">
+                        <p class="card-text h4">{{i.content}}</p>
+                    </div>
+                    <div class="card-footer d-flex ">
+                        <p class="card-text mx-3">{{i.user}}</p>
+                        <p class="card-text text-center">{{i.date}}</p>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}    
+    </ul>
+    <p class="h2 text-center bg-dark text-white">Write Answer of above Question</p>
+    <form action="" method="POST" class="postform">
+        {% csrf_token %}
+        <table class="posttable">
+            <tr>
+            </tr>
+            <tr>
+                <td>
+                    <textarea cols="50" rows="5" name="description" placeholder="description about problem"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-primary" type="Submit">Post</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+{% endblock content %}
